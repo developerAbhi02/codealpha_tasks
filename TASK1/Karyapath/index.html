@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KaryaPath - Your To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="images/icon.svg" alt="KaryaPath Logo">
+            <span>KaryaPath</span>
+        </div>
+        <div class="nav-buttons">
+            <button id="language-toggle" title="Change Language / भाषा बदलें">
+                <i class="fas fa-language"></i>
+            </button>
+            <button id="theme-toggle" title="Change Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="todo-app">
+            <h2>KaryaPath <img src="images/icon.svg" alt="KaryaPath Icon"></h2>
+            <div class="row">
+                <input type="text" id="input-box" placeholder="Add your task">
+                <button id="add-button">Add</button>
+            </div>
+            <div class="filters">
+                <div class="filter-option active" data-filter="all">All</div>
+                <div class="filter-option" data-filter="pending">Pending</div>
+                <div class="filter-option" data-filter="completed">Completed</div>
+            </div>
+            <ul id="list-container">
+                <!-- Tasks will be added here -->
+            </ul>
+            <div class="footer">
+                <button id="clear-all">Clear All</button>
+                <div class="task-stats">Total Tasks: <span id="task-counter">0</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Confirmation Dialog -->
+    <div class="dialog-overlay" id="confirm-dialog">
+        <div class="dialog-content">
+            <h3 id="dialog-title"></h3>
+            <p id="dialog-message"></p>
+            <div class="dialog-buttons">
+                <button id="dialog-cancel">Cancel</button>
+                <button id="dialog-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

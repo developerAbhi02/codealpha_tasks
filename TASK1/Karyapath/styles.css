@@ -1,0 +1,431 @@
+:root {
+    --primary-color: #8e44ad;
+    --primary-hover: #7d3c98;
+    --error-color: #ff5945;
+    --error-hover: #e64a3a;
+    --text-color: #333;
+    --text-light: #555;
+    --text-lighter: #999;
+    --bg-color: linear-gradient(135deg, #8e44ad, #3498db);
+    --bg-light: #fff;
+    --bg-lighter: #f5f5f5;
+    --bg-item: #edeef0;
+    --completed-bg: #e9f5e9;
+    --border-color: #ddd;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] {
+    --primary-color: #bb86fc;
+    --primary-hover: #9965e3;
+    --error-color: #cf6679;
+    --error-hover: #b4596a;
+    --text-color: #ffffff;
+    --text-light: #e1e1e1;
+    --text-lighter: #bbbbbb;
+    --bg-color: linear-gradient(135deg, #1f1135, #121212);
+    --bg-light: #1e1e1e;
+    --bg-lighter: #2d2d2d;
+    --bg-item: #2d2d2d;
+    --completed-bg: #1b2a1b;
+    --border-color: #404040;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --input-bg: #333333;
+    --input-text: #ffffff;
+    --filter-text: #e1e1e1;
+    --filter-bg: #2d2d2d;
+    --list-text: #ffffff;
+    --list-hover: #3d3d3d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+body {
+    background: var(--bg-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color);
+}
+
+/* नेवबार स्टाइल */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-light);
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: var(--primary-color);
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.logo img {
+    width: 35px;
+    height: 35px;
+    margin-right: 12px;
+    filter: drop-shadow(0 2px 4px var(--shadow-color));
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-buttons button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--text-light);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, color 0.3s;
+}
+
+.nav-buttons button:hover {
+    background-color: var(--bg-lighter);
+    color: var(--primary-color);
+}
+
+.container {
+    width: 100%;
+    max-width: 540px;
+    padding: 20px;
+    margin: 30px auto;
+    flex-grow: 1;
+    display: flex;
+}
+
+.todo-app {
+    width: 100%;
+    background: var(--bg-light);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 20px var(--shadow-color);
+}
+
+.todo-app h2 {
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.todo-app h2 img {
+    width: 35px;
+    height: 35px;
+    margin-left: 12px;
+    filter: drop-shadow(0 2px 4px var(--shadow-color));
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-item);
+    border-radius: 30px;
+    padding-left: 20px;
+    margin-bottom: 25px;
+}
+
+input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px;
+    font-size: 16px;
+    color: var(--input-text);
+}
+
+input::placeholder {
+    color: var(--text-lighter);
+}
+
+#add-button {
+    border: none;
+    outline: none;
+    padding: 12px 30px;
+    background: #8e44ad;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: background 0.3s;
+}
+
+#add-button:hover {
+    background: #7d3c98;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background: var(--filter-bg);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.filter-option {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--filter-text);
+}
+
+.filter-option:hover {
+    background: var(--list-hover);
+}
+
+.filter-option.active {
+    background: var(--primary-color);
+    color: #ffffff;
+}
+
+ul li {
+    list-style: none;
+    font-size: 17px;
+    padding: 12px 8px 12px 50px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 10px;
+    background: var(--bg-item);
+    border-radius: 5px;
+    transition: all 0.2s;
+    color: var(--list-text);
+}
+
+ul li:hover {
+    background: var(--list-hover);
+}
+
+ul li.checked {
+    color: var(--text-light);
+    text-decoration: line-through;
+    background: var(--completed-bg);
+}
+
+ul li span {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    color: var(--text-light);
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+ul li span:hover {
+    background: var(--list-hover);
+    color: var(--error-color);
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+#clear-all {
+    background: #ff5945;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#clear-all:hover {
+    background: #e64a3a;
+}
+
+.task-stats {
+    color: #555;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .todo-app {
+        padding: 20px;
+    }
+    
+    .row {
+        flex-direction: column;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    
+    input {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    
+    #add-button {
+        width: 100%;
+        border-radius: 5px;
+    }
+}
+
+/* Toast Styles */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.toast {
+    background: var(--bg-light);
+    color: var(--text-color);
+    padding: 12px 24px;
+    border-radius: 4px;
+    margin-top: 10px;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    display: flex;
+    align-items: center;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+.toast.success {
+    border-left: 4px solid #4caf50;
+}
+
+.toast.error {
+    border-left: 4px solid var(--error-color);
+}
+
+.toast.info {
+    border-left: 4px solid var(--primary-color);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Dialog Styles */
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.dialog-overlay.active {
+    display: flex;
+}
+
+.dialog-content {
+    background: var(--bg-light);
+    padding: 24px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+.dialog-content h3 {
+    color: var(--text-color);
+    margin-bottom: 12px;
+}
+
+.dialog-content p {
+    color: var(--text-light);
+    margin-bottom: 20px;
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.dialog-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+#dialog-cancel {
+    background: var(--bg-item);
+    color: var(--text-color);
+}
+
+#dialog-confirm {
+    background: var(--primary-color);
+    color: white;
+}
+
+#dialog-cancel:hover {
+    background: var(--list-hover);
+}
+
+#dialog-confirm:hover {
+    background: var(--primary-hover);
+} 
